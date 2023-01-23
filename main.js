@@ -1,12 +1,19 @@
-let btn = document.getElementById('clear');
-let pad = document.getElementById('pad');
+document.addEventListener("DOMContentLoaded", function(){
+  createBoard(16);
+  console.log("hi");
+});
 
-function Clear() {
-  pad.style = 'background-color:white;';
-}
+function createBoard(size){
+  let board=document.querySelector(".board");
 
-function Paint(item) {
-  item.style = 'background-color:yellow;';
+  board.style.gridTemplateColumns =`repeat(${size}, 1fr)`;
+  board.style.gridTemplateRows =`repeat(${size}, 1fr)`;
+
+  let numDivs=size*size;
+
+  for(let i=0; i<numDivs; i++){
+    let div=document.createElement("div");
+    div.style.background="yellow";
+    board.insertAdjacentElement("beforeEnd",div);
+  }
 }
-btn.addEventListener('click', Clear);
-pad.addEventListener('mouseenter', Paint(this));
