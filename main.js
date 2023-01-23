@@ -1,6 +1,19 @@
 let color = 'black';
+let click = false;
 document.addEventListener('DOMContentLoaded', function () {
   createBoard(16);
+
+  document.querySelector('body').addEventListener('click', function (e) {
+    if (e.target.tagName != 'BUTTON') {
+      click = !click;
+      let draw = document.querySelector('#draw');
+      if (click) {
+        draw.textContent = 'Now you can draw.';
+      } else {
+        draw.textContent = "You're not allowed to draw.";
+      }
+    }
+  });
 
   let btn_popup = document.querySelector('#popup');
   btn_popup.addEventListener('click', function () {
@@ -38,10 +51,12 @@ function getSize() {
   }
 }
 function colorDiv() {
-  if (color == 'random') {
-    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-  } else {
-    this.style.backgroundColor = `black`;
+  if (click) {
+    if (color == 'random') {
+      this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    } else {
+      this.style.backgroundColor = `black`;
+    }
   }
 }
 
